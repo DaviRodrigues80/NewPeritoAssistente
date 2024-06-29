@@ -1,0 +1,22 @@
+{% extends 'layouts/b.html' %}
+
+{% block content %}
+
+<h1>Deletar Resposta</h1>
+
+<div class=" card px-6 pt-3 text-md mb-6 [&>*>*>a]:text-sm">
+
+    {% include 'a_posts/reply.html' %}
+
+</div>
+
+<p class="mb-6">Você tem certeza que deseja deletar esta resposta?</p>
+
+<form method='POST'>
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+    <a class="button secondaryAction ml-1" href="{{ request.META.HTTP_REFERER }}">Voltar</a>
+</form>
+
+
+{% endblock %}

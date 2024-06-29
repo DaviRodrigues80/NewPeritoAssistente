@@ -1,0 +1,17 @@
+{% extends 'layouts/b.html' %}
+
+{% block content %}
+
+<h1>Deletar Comentario</h1>
+
+{% include 'a_posts/comment.html' %}
+
+<p class="my-6">Você tem certeza que deseja deletar este comentario?</p>
+
+<form method='POST'>
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+    <a class="button secondaryAction ml-1" href="{{ request.META.HTTP_REFERER }}">Voltar</a>
+</form>
+
+{% endblock %}

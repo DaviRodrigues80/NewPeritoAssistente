@@ -1,0 +1,17 @@
+<!-- templates/a_inbox/list_searchuser.html -->
+<ul id="user-list" class="mt-2">
+    {% for user in users %}
+    <li>
+        <a  class="flex items-center gap-1 hover:bg-zinc-100 rounded-lg p-2 cursor-pointer"
+        hx-get="{% url 'inbox-newmessage' user.id %}"
+        hx-target="#new-message"
+        hx-swap="innerHTML">
+            <img class="w-10 h-10 object-cover rounded-full mr-1" src="{{ user.profile.avatar }}" alt="Profile Image">
+            <div class="font-bold">{{ user.profile.name }} <span class="text-xs font-normal text-zinc-500">@{{ user.username }}</span></div>
+        </a>
+    </li>
+    {% empty %}
+    <li class="p-2 text-gray-500">Nenhum usuário encontrado.</li>
+    {% endfor %}
+</ul>
+

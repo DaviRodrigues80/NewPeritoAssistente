@@ -1,0 +1,21 @@
+<!-- a_inbox/form_newconversation.html -->
+{% extends "layouts/d.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto py-6">
+    <h2 class="text-xl font-semibold mb-4">Nova Conversa</h2>
+    <form method="post" action="{% url 'new_conversation' %}">
+        {% csrf_token %}
+        <label for="recipient_username" class="block mb-2 text-sm font-medium text-gray-700">Selecione o destinatário:</label>
+        <select id="recipient_username" name="recipient_username" class="form-select w-full rounded-md border-gray-300 shadow-sm">
+            {% for user in users %}
+            <option value="{{ user.username }}">{{ user.username }} ({{ user.profile.name }})</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="mt-4 bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700">
+            Iniciar Conversa
+        </button>
+    </form>
+</div>
+{% endblock %}

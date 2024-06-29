@@ -1,0 +1,14 @@
+{% extends 'layouts/c.html' %}
+
+{% block content %}
+
+<h1>Deletar Conta</h1>
+<p>Você tem certeza que deseja deletar esta conta?</p>
+
+<form method='POST'>
+    {% csrf_token %}
+    <button type="submit" class="btn-red mt-6">Sim, Eu quero deletar minha conta</button>
+    <a class="button secondaryAction ml-1" href="{{ request.META.HTTP_REFERER }}">Cancelar</a>
+</form>
+
+{% endblock %}

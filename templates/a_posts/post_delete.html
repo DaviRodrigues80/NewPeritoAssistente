@@ -1,0 +1,23 @@
+{% extends 'layouts/b.html' %}
+
+{% block content %}
+
+<div class="md:flex items-center">
+    <div class="w-full md:max-w-sm mr-6 md:[&>*>*>p]:text-4xl">
+        
+        {% include 'a_posts/post.html' %}
+
+    </div>
+    <div>
+        <h1>Deletar Post</h1>
+        <p class="mb-6">Você tem certeza que deseja deletar este post?</p>
+        
+        <form method='POST'>
+            {% csrf_token %}
+            <button type="submit">Confirmar</button>
+            <a class="button secondaryAction ml-1" href="{{ request.META.HTTP_REFERER }}">Voltar</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

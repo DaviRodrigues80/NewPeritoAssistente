@@ -1,0 +1,43 @@
+{% extends 'layouts/b.html' %}
+
+{% block content %}
+
+<h1>Criar Post</h1>
+<div class="card !p-8">
+    <form id="postForm" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Input de arquivo para selecionar imagem -->
+        <input type="file" id="fileInput" name="image" accept="image/*" style="display:block; margin-bottom: 10px;">
+        
+        <!-- Contêiner para pré-visualização da imagem -->
+        <div id="previewContainer" class="mb-6">
+            <img id="imagePreview" src="#" alt="Pré-visualização da imagem" style="display:none; max-width: 100%; height: auto;">
+        </div>
+
+        <!-- Formulário para outros campos -->
+        {{ form.as_p }}
+        <button type="submit" class="mt-1">Enviar Post</button>
+        <a class="button secondaryAction ml-1" href="{{ request.META.HTTP_REFERER }}">Cancelar</a>
+    </form>
+</div>
+
+<script>
+document.getElementById('fileInput').addEventListener('change', function(event) {
+    const files = event.target.files;
+    if (files.length > 0) {
+        const file = files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const preview = document.getElementById('imagePreview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+
+{% endblock %}

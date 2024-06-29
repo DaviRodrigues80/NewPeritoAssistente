@@ -1,0 +1,18 @@
+<!-- templates/a_inbox/form_searchuser.html -->
+<h3 class="text-xl font-bold mb-4" id="modal-title">Nova Mensagem</h3>
+<div id="new-message">
+    <div class="flex gap-2 items-center">
+        <span class="font-bold">Para:</span>
+        <input type="text" name="search_user" id="search_user" class="p-3 w-screen lg:full" placeholder="Buscar usuário ..."
+            hx-get="{% url 'inbox-searchusers' %}"
+            hx-trigger="keyup changed delay:200ms"
+            hx-target="#user-list" 
+            hx-swap="innerHTML">
+        
+    </div>
+    <div id="user-list" class="block h-60 overflow-y-auto">
+        <!-- Resultados da busca serão inseridos aqui -->
+    </div>
+</div>
+
+

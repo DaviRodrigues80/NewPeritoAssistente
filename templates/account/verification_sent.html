@@ -1,0 +1,14 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+    {% trans "Verify Your Email Address" %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% trans "Verify Your Email Address" %}
+    {% endelement %}
+    {% element p %}
+        {% blocktrans %}Enviamos um e-mail para você para verificação. Siga o link fornecido para finalizar o processo de inscrição. Se você não vir o e-mail de verificação na sua caixa de entrada principal, verifique sua pasta de spam. Entre em contato conosco se você não receber o e-mail de verificação dentro de alguns minutos.{% endblocktrans %}
+    {% endelement %}
+{% endblock content %}
