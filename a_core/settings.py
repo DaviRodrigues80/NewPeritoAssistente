@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [
     
 ]
 
-CSRF_COOKIE_SECURE = True
+
 
 CSRF_TRUSTED_ORIGINS=['http://127.0.0.1', 'http://localhost', 'https://novoperitoassistente.up.railway.app', 'https://novoperitoassistente.up.railway.app/daviboss/']
 
