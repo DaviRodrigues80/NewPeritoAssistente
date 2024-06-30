@@ -49,6 +49,13 @@ def home_view(request, tag=None):
 
 @login_required
 def post_create_view(request):
+    # Verifica se o usuário já tem um post
+    existing_post = Post.objects.filter(author=request.user).first()
+    if existing_post:
+        # Exibe uma mensagem de erro informando que o usuário já tem um post
+        messages.error(request, "Você já possui uma Bio. Você não pode criar mais de uma Bio.")
+        return redirect('profile')  # Redireciona para a página de perfil ou qualquer outra página apropriada
+    
     if request.method == 'POST':
         form = PostCreateForm(request.POST, request.FILES)
         if form.is_valid():
@@ -60,7 +67,8 @@ def post_create_view(request):
             post.author = request.user
             post.save()
             form.save_m2m()
-            return redirect('home')
+            messages.success(request, "Sua Bio foi criada com sucesso.")
+            return redirect('profile')  # Redireciona para a página de perfil ou qualquer outra página apropriada
     else:
         form = PostCreateForm()
     
@@ -73,7 +81,7 @@ def post_delete_view(request, pk):
     
     if request.method == "POST":
         post.delete()
-        messages.success(request, 'Post deletado')
+        messages.success(request, 'Bio deletada')
         return redirect('home')
         
     return render(request, 'a_posts/post_delete.html', {'post' : post})
@@ -88,7 +96,7 @@ def post_edit_view(request, pk):
         form = PostEditForm(request.POST, instance=post)
         if form.is_valid:
             form.save()
-            messages.success(request, 'Post atualizado')
+            messages.success(request, 'Bio atualizada')
             return redirect('home')
     
     context = {
@@ -169,7 +177,7 @@ def comment_delete_view(request, pk):
     
     if request.method == "POST":
         post.delete()
-        messages.success(request, 'Comment deleted')
+        messages.success(request, 'Comentario deletado')
         return redirect('post', post.parent_post.id )
         
     return render(request, 'a_posts/comment_delete.html', {'comment' : post})

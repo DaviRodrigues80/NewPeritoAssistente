@@ -37,7 +37,7 @@ class CommentCreateForm(ModelForm):
         model = Comment
         fields = ['body']
         widgets = {
-            'body' : forms.TextInput(attrs={'placeholder': 'Adicionar resposta...'})
+            'body' : forms.TextInput(attrs={'placeholder': 'Conversar...'})
         }
         labels = {
             'body': ''
@@ -49,7 +49,7 @@ class ReplyCreateForm(ModelForm):
         model = Reply
         fields = ['body']
         widgets = {
-            'body' : forms.TextInput(attrs={'placeholder': 'Adiconar resposta ...', 'class': "!text-sm"})
+            'body' : forms.TextInput(attrs={'placeholder': 'Conversar ...', 'class': "!text-sm"})
         }
         labels = {
             'body': ''

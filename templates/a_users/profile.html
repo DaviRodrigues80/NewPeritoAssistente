@@ -57,8 +57,8 @@
     _="on htmx:afterOnLoad take .selected for event.target"> 
         <a hx-get="{% url 'userprofile' profile.user.username %}" class="tab selected">Mais Recente</a>
         <a hx-get="{% url 'userprofile' profile.user.username %}?top-posts" class="tab">Ranking</a>  
-        <a hx-get="{% url 'userprofile' profile.user.username %}?top-comments" class="tab">Top Comentarios</a>
-        <a hx-get="{% url 'userprofile' profile.user.username %}?liked-posts" class="tab">Posts Curtidos</a>
+        <a hx-get="{% url 'userprofile' profile.user.username %}?top-comments" class="tab">Top Comentários</a>
+        <a hx-get="{% url 'userprofile' profile.user.username %}?liked-posts" class="tab">Bios Curtidas</a>
     </div>
 
     <div id="tab-contents" class="w-full flex flex-col items-center">

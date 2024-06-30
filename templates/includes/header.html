@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between h-20">
         <logo>
             <a class="flex items-center gap-1" href="/">
-                <img class="w-6 mr-1 -mt-1" src="{% static 'images/fireheart_white.svg' %}"/>
+                <img class="w-6 mr-1 -mt-1" src="{% static 'images/icons8-search-64.png' %}"/>
                 <span class="text-lg font-bold">Perito Assistente</span>
             </a>
         </logo>
@@ -21,7 +21,7 @@
         <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
             {% if user.is_authenticated %}
             <li><a href="/">Home</a></li>
-            <li><a href="{% url 'post-create' %}">Criar Post</a></li>
+            <li><a href="{% url 'post-create' %}">Criar Bio</a></li>
             <li class="relative">
                 <div class="absolute top-2 right-0"
                 hx-get="{% url 'notify-inbox' %}"

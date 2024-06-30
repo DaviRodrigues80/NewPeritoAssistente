@@ -1565,8 +1565,12 @@ video {
 }
 
 .text-6xl {
-  font-size: 3.75rem;
+  font-size: 8.75rem;
   line-height: 1;
+  text-shadow:-3px -3px 0 #000,  
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
 }
 
 .text-base {

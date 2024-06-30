@@ -1,10 +1,12 @@
+<!--form_newreply.html-->
+{% load static %}
 <div class="flex flex-col md:flex-row gap-1 md:gap-6 w-full">
-    <img class="w-14 h-14 object-cover rounded-full" src="{{ user.profile.avatar }}" alt="Profile Image">
+    <img class="w-7 h-7 object-cover rounded-full" src="{{ user.profile.avatar }}" alt="Profile Image">
     <form method="POST" action="{% url 'inbox-newreply' conversation.id %}" class="w-full">
         {% csrf_token %}
         {{ new_message_form }}
         <div class="flex justify-between">
-            <button type="submit" class="mt-1">Enviar Mensagem</button>
+            <button type="submit" class="mt-1">Responder</button>
             <a class="button secondaryAction ml-1" href="{{ request.META.HTTP_REFERER }}">Cancelar</a>
         </div>
     </form>
