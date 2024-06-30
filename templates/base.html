@@ -15,6 +15,7 @@
     <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
     <link rel="stylesheet" href="{% if debug %}{% static 'css/style.css' %}{% else %}{% static 'css/style.min.css' %}{% endif %}" >
     <script src="{% static 'js/scripts.js' %}"></script>
+    {% csrf_token %}
 </head>
 <body class="bg-gray-300">
 
