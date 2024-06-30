@@ -33,11 +33,17 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost'] )
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'novoperitoassistente.up.railway.app',  # Exemplo de um host permitido em produção
+    
+]
 
 CSRF_COOKIE_SECURE = True
 
-CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS.copy()
+CSRF_TRUSTED_ORIGINS=['http://127.0.0.1', 'http://localhost', 'https://novoperitoassistente.up.railway.app', 'https://novoperitoassistente.up.railway.app/daviboss/']
+
 
 INTERNAL_IPS = (
     '127.0.0.1',
