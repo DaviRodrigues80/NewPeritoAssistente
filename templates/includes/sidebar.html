@@ -11,7 +11,6 @@
                 <a href="{% url 'category' category.slug %}">
                     <img class="w-8 h-8 object-cover mr-2" src="{{ category.image.url }}">
                     <span class="font-bold text-sm">{{ category.name }}</span>
-                    <div>{{ category.image.url }}</div> <!-- Adicione esta linha para verificar a URL -->
                 </a>
             </li>
             {% endfor %}
