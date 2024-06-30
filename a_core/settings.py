@@ -28,7 +28,7 @@ SECRET_KEY = 'wr$2plzpphf_&(ahg3z3eq36tq82x^5b8h^ebkq*-eg%kx77-%'
 ENCRYPT_KEY = env('ENCRYPT_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if ENVIRONMENT == 'production':
+if ENVIRONMENT == 'production': # production development
     DEBUG = True
 else:
     DEBUG = False
