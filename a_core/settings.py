@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [
     
 ]
 
-
+CSRF_COOKIE_SECURE = True
 
 CSRF_TRUSTED_ORIGINS=['http://127.0.0.1', 'http://localhost', 'https://novoperitoassistente.up.railway.app', 'https://novoperitoassistente.up.railway.app/daviboss/']
 
@@ -195,8 +195,8 @@ LOGIN_REDIRECT_URL = '/'
 # EMAIL_BACKEND = 'django.core.mail.backend.console.EmailBackend'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-EMAIL_HOST = ''
-EMAIL_PORT = ''
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = ''
