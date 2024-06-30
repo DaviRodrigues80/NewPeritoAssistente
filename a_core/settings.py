@@ -28,14 +28,14 @@ SECRET_KEY = env('SECRET_KEY')
 ENCRYPT_KEY = env('ENCRYPT_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if ENVIRONMENT == 'production':
+if ENVIRONMENT == 'development':
     DEBUG = True
 else:
     DEBUG = False
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost'] )
 
-CRSF_TRUSTED_ORIGINS = ['https://novoperitoassistente.up.railway.app']
+CRSF_TRUSTED_ORIGINS = ('https://novoperitoassistente.up.railway.app')
 
 INTERNAL_IPS = (
     '127.0.0.1',
