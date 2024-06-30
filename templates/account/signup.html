@@ -14,7 +14,7 @@
         </a>
     {% endsetvar %}
     {% element p %}
-        {% blocktranslate %}Já tem uma conta???? Então por favor {{ link }}entre{{ end_link }}.{% endblocktranslate %}
+        {% blocktranslate %}Já tem uma conta? Então por favor {{ link }}entre{{ end_link }}.{% endblocktranslate %}
     {% endelement %}
     {% if not SOCIALACCOUNT_ONLY %}
         {% url 'account_signup' as action_url %}
