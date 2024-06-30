@@ -35,7 +35,7 @@ else:
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost'] )
 
-CRSF_TRUSTED_ORIGINS = ('https://novoperitoassistente.up.railway.app')
+CRSF_TRUSTED_ORIGINS = ['https://novoperitoassistente.up.railway.app']
 
 INTERNAL_IPS = (
     '127.0.0.1',
