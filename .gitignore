@@ -1,6 +1,5 @@
 venv/
 media/
-static/
 node/
 __pycache__/
 .env
