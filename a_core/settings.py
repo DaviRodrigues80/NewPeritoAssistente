@@ -22,7 +22,7 @@ environ.Env.read_env(os.path.join(os.path.dirname(__file__), '.env'))
 ENVIRONMENT = env('ENVIRONMENT', default='production')
 
 # Configurações de segurança e depuração
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'wr$2plzpphf_&(ahg3z3eq36tq82x^5b8h^ebkq*-eg%kx77-%'
 
 
 ENCRYPT_KEY = env('ENCRYPT_KEY')
