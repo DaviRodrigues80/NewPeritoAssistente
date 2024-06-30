@@ -19,4 +19,4 @@ COPY . .
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Define o comando de inicialização padrão para o contêiner
-CMD ["gunicorn", "a_core.wsgi:application", "--bind", "0.0.0.0:$PORT"]
+CMD exec gunicorn a_core.wsgi:application --bind 0.0.0.0:${PORT}
