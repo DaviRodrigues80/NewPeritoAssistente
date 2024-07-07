@@ -11,6 +11,10 @@ from django.core.paginator import Paginator
 from a_features.views import feature_enabled
 
 
+def landing_page(request):
+    return render(request, 'a_core/landingpage.html')
+
+
 def home_view(request, tag=None): 
     if tag:
         posts = Post.objects.filter(tags__slug=tag)

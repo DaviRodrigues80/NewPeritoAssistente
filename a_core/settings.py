@@ -2,6 +2,7 @@ import os
 import environ
 from pathlib import Path
 import dj_database_url
+import stripe
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,16 +23,27 @@ environ.Env.read_env(os.path.join(os.path.dirname(__file__), '.env'))
 ENVIRONMENT = env('ENVIRONMENT', default='production')
 
 # Configurações de segurança e depuração
-SECRET_KEY = 'wr$2plzpphf_&(ahg3z3eq36tq82x^5b8h^ebkq*-eg%kx77-%'
-
-
+SECRET_KEY = env('SECRET_KEY', default='wr$2plzpphf_&(ahg3z3eq36tq82x^5b8h^ebkq*-eg%kx77-%')
 ENCRYPT_KEY = env('ENCRYPT_KEY')
 
+
+# KEY para STRIPE
+stripe.api_key = env('STRIPE_SECRET_KEY')
+STRIPE_SECRET_KEY=env('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY=env('STRIPE_PUBLISHABLE_KEY')
+STRIPE_WEBHOOK_SECRET=env('STRIPE_WEBHOOK_SECRET')
+DOMAIN_URL=env('DOMAIN_URL')
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
-if ENVIRONMENT == 'production': # production development
+if env('ENVIRONMENT') == 'production': # production development
     DEBUG = True
+    DOMAIN_URL = 'http://localhost:8000'
+    CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
 else:
     DEBUG = False
+    DOMAIN_URL = 'https://novoperitoassistente.up.railway.app'
+    CSRF_TRUSTED_ORIGINS = ['https://novoperitoassistente.up.railway.app']
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -43,6 +55,10 @@ ALLOWED_HOSTS = [
 CSRF_COOKIE_SECURE = True
 
 CSRF_TRUSTED_ORIGINS=['http://127.0.0.1', 'http://localhost', 'https://novoperitoassistente.up.railway.app', 'https://novoperitoassistente.up.railway.app/daviboss/']
+
+BACKEND_DOMAIN = env("BACKEND_DOMAIN")
+PAYMENT_SUCCESS_URL = env("PAYMENT_SUCCESS_URL")
+PAYMENT_CANCEL_URL = env("PAYMENT_CANCEL_URL")
 
 
 INTERNAL_IPS = (
@@ -66,10 +82,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_cleanup.apps.CleanupConfig',
     'django.contrib.sitemaps',
+    'a_core',
     'a_posts',
     'a_users',
     'a_inbox',
-    'a_landingpages'
+    'a_landingpages',
+    'subscriptions',
 ]
 
 SITE_ID = 1
@@ -85,7 +103,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
     'a_landingpages.middleware.landingpage_middleware',
-    'allauth.account.middleware.AccountMiddleware'
+    'allauth.account.middleware.AccountMiddleware',
+    'a_core.middleware.SubscriptionMiddleware',
+    
 ]
 # Configuração do WhiteNoise para compressão e cache
 STORAGES = {
@@ -202,5 +222,7 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
+
+
 
 ACCOUNT_USERNAME_BLACKLIST = ['admin', 'accounts', 'profile', 'category', 'post', 'inbox', 'daviboss']

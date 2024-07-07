@@ -1,0 +1,53 @@
+<!-- subscriptions/templates/plan_list.html -->
+
+{% load static %}
+
+{% block title %}Planos de Assinatura{% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-10">
+    <h1 class="text-3xl font-bold mb-8 text-center">Escolha seu Plano</h1>
+    <div class="flex justify-center gap-8">
+        {% for plan in plans %}
+        <div class="max-w-md w-full bg-white rounded overflow-hidden shadow-lg">
+            <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">{{ plan.name }}</div>
+                <p class="text-gray-700 text-base mb-4">Preço: R$ {{ plan.price }}</p>
+                <button type="button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded checkout-button"
+                        data-plan-id="{{ plan.id }}" data-user-id="{{ request.user.id }}">
+                    Assinar
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.checkout-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const planId = this.dataset.planId;
+                const userId = this.dataset.userId;
+
+                fetch("{% url 'create_checkout_session' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}',
+                    },
+                    body: JSON.stringify({ plan_id: planId, user_id: userId }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const stripe = Stripe('{{ stripe_publishable_key }}');
+                    stripe.redirectToCheckout({ sessionId: data.id });
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>
+{% endblock %}

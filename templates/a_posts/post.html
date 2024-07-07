@@ -31,11 +31,11 @@
         <div class="flex items-center justify-between text-sm px-2">
             <a class="font-bold hover:underline" href="{% url 'post' post.id %}">
                 {% if post.comments.count %}
-                Responder
+                Comentários
                 <span id="commentscount-{{ post.id }}" class="font-light text-gray-500 ml-1">{{ post.comments.count }}</span>
                 {% else %}
                     {% if user.is_authenticated %}
-                    Contato
+                    Comentar
                     {% endif %}
                 {% endif %}
             </a>

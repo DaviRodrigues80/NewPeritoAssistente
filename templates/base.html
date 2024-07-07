@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="stripe-key" content="{{ STRIPE_PUBLISHABLE_KEY }}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>Perito Assistente</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'images/icons8-search-64.png' %}"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +17,7 @@
     <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
     <link rel="stylesheet" href="{% if debug %}{% static 'css/style.css' %}{% else %}{% static 'css/style.min.css' %}{% endif %}" >
     <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     {% csrf_token %}
 </head>
 <body class="bg-gray-500">
@@ -25,6 +28,13 @@
 
 {% block layout %}
 {% endblock %}
+
+<footer class="bg-gray-800 text-white text-center py-4">
+    <div class="container mx-auto flex flex-col items-center">
+        <img src="{% static 'images/logo.png' %}" alt="Logo da Empresa" class="h-12">
+        <p class="mt-2">© {{ year }} Perito Assistente. Todos os direitos reservados.</p>
+    </div>
+</footer>
     
 </body>
 </html>

@@ -1,4 +1,4 @@
-
+# a_core.urls.py
 from django.contrib import admin
 from django.urls import path, include
 from a_posts.views import *
@@ -10,6 +10,7 @@ from django.views.generic.base import TemplateView
 # Sitemaps
 from django.contrib.sitemaps.views import sitemap
 from a_posts.sitemaps import *
+from subscriptions.views import create_checkout_session, plan_list
 
 sitemaps = {
     'static' : StaticSitemap,
@@ -20,11 +21,11 @@ sitemaps = {
 urlpatterns = [
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('daviboss/', admin.site.urls),
+    path('', landing_page, name='landing_page'),
     path('sitemap.xml/', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt/', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('accounts/', include('allauth.urls')),
-    path('', home_view, name='home'),
+    path('home', home_view, name='home'),
     path('category/<tag>/', home_view, name="category"),
     path('post/create/', post_create_view, name='post-create'),
     path('post/delete/<pk>/', post_delete_view, name='post-delete'),
@@ -45,8 +46,10 @@ urlpatterns = [
     path('replysent/<pk>/', reply_sent, name='reply-sent'), 
     path('reply/delete/<pk>/', reply_delete_view, name='reply-delete'),
     path('_/', include('a_landingpages.urls')),
+    path('subscriptions/', include('subscriptions.urls')),
+       
+    
 ]
-
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,53 @@
+{% extends 'layouts/d.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mx-auto mt-10">
+        <h1 class="text-3xl text-white font-bold mb-8 text-center">Escolha seu Plano</h1>
+        <div class="flex justify-center gap-8">
+            <!-- Plano Básico -->
+            <div class="max-w-md w-full bg-white rounded overflow-hidden shadow-lg">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">Plano Básico</div>
+                    <p class="text-gray-700 text-base mb-4" id="price-basic">R$ 39,90 / mês</p>
+                    
+                    <form id="checkout-form-basic">
+                        {% csrf_token %}
+                        <input type="hidden" id="user-profile-id-basic" value="{{ user.profile.id }}">
+                        <button type="button" class="bg-green-500 hover:bg-green-300 text-white font-bold py-2 px-4 rounded" onclick="checkout('price_1PP6Ou2Ldqo6v7PmDbr8qpTc', 'price-basic')">Assinar</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Plano Padrão -->
+            <div class="max-w-md w-full bg-white rounded overflow-hidden shadow-lg">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">Plano Padrão</div>
+                    <p class="text-gray-700 text-base mb-4" id="price-standard">R$ 49,90 / mês</p>
+                    
+                    <form id="checkout-form-standard">
+                        {% csrf_token %}
+                        <input type="hidden" id="user-profile-id-standard" value="{{ user.profile.id }}">
+                        <button type="button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="checkout('price_1PP6PX2Ldqo6v7PmC9iYtk0T', 'price-standard')">Assinar</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Plano Premium -->
+            <div class="max-w-md w-full bg-white rounded overflow-hidden shadow-lg">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">Plano Premium</div>
+                    <p class="text-gray-700 text-base mb-4" id="price-premium">R$ 69,90 / mês</p>
+                    
+                    <form id="checkout-form-premium">
+                        {% csrf_token %}
+                        <input type="hidden" id="user-id" value="{% if user.is_authenticated %}{{ user.id }}{% endif %}">
+                        <button type="button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="checkout('price_1PP6Px2Ldqo6v7PmEcPrnTME', 'price-premium')">Assinar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/checkout.js' %}"></script>
+{% endblock %}

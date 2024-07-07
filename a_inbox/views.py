@@ -167,7 +167,11 @@ def notify_newmessage(request, conversation_id):
     else:
         return render(request, 'a_inbox/notify_icon.html', {'new_messages': False})
 
+@login_required
 def notify_inbox(request):
-    my_conversations = Conversation.objects.filter(participants=request.user, is_seen=False)
-    new_messages = any(c.messages.first().sender != request.user for c in my_conversations)
+    user = request.user
+
+    my_conversations = Conversation.objects.filter(participants=user, is_seen=False)
+    new_messages = any(c.messages.first().sender != user for c in my_conversations)
+
     return render(request, 'a_inbox/notify_icon.html', {'new_messages': new_messages})

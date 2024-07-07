@@ -11,10 +11,12 @@ from allauth.account.utils import send_email_confirmation
 from a_posts.forms import ReplyCreateForm
 from a_inbox.forms import InboxNewMessageForm
 from .forms import *
+from django.db.models import Q
 
 def profile_view(request, username=None):
     if username:
-        profile = get_object_or_404(User, username=username).profile
+        user = get_object_or_404(User, username=username)
+        profile = user.profile
     else:
         try:
             profile = request.user.profile

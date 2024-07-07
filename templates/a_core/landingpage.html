@@ -1,0 +1,110 @@
+{% extends 'layouts/c.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero bg-cover bg-center h-screen text-white flex items-center justify-center" style="background-image: url('{% static "images/bg-landingpage.jpg" %}');">
+  <div class="text-center">
+    <h1 class="text-6xl font-bold mb-6">Perito Assistente</h1>
+    <h1 class="text-5xl font-bold mb-6">Seu Parceiro em Expertise</h1>
+    <p class="text-xl mb-8">Descubra como nosso aplicativo pode agilizar seu trabalho e aumentar a eficiência.</p>
+    {% if not request.user.is_authenticated %}
+    <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" hx-get="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}" hx-trigger="click">Inscrever-se</button>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Benefits Section with Text Overlay and Stroke on Image -->
+<section class="benefits py-16 bg-gray-100 relative">
+  <div class="container mx-auto max-w-4xl">
+    <div class="relative bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="{% static 'images/equipe.png' %}" alt="Imagem de reunião de equipe" class="w-full h-auto">
+      <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center text-center">
+        <h2 class="text-4xl font-bold mb-4 relative z-10">
+          <span class="text-white">Por que escolher o Perito Assistente?</span>
+          <span class="text-white absolute top-0 left-0 -z-1">Por que escolher o Perito Assistente?</span>
+        </h2>
+        <ul class="space-y-4 text-white relative z-10">
+          <li class="text-4xl font-bold">Simplifique seu fluxo de trabalho</li>
+          <li class="text-4xl font-bold">Aumente a eficiência</li>
+          <li class="text-4xl font-bold">Melhore a colaboração</li>
+        </ul>
+        {% if not request.user.is_authenticated %}
+        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" hx-get="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}" hx-trigger="click">Inscrever-se</button>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- Testimonials Section with Increased Spacing -->
+<section class="testimonials py-16 bg-gray-100">
+  <div class="container mx-auto max-w-4xl">
+    <h2 class="text-4xl text-white font-bold mb-8 text-center mt-12">O que nossos clientes dizem!!!</h2>
+
+    <!-- Testemunho 1 -->
+    <div class="bg-white rounded-lg shadow-md p-8 flex items-center justify-center mb-8">
+      <div class="flex-shrink-0 mr-4">
+        <img src="{% static 'images/Lana.png' %}" alt="Foto de Lana Rhodes" class="rounded-full w-40 h-40">
+      </div>
+      <div>
+        <blockquote class="text-xl italic max-w-prose">
+          <p class="mb-4">"Perito Assistente revolucionou a maneira de trabalhar. É uma virada de jogo!"</p>
+          <cite class="block text-gray-700">Lana Rhodes, advogada</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- Testemunho 2 -->
+    <div class="bg-white rounded-lg shadow-md p-8 flex items-center justify-center mb-8">
+      <div class="flex-shrink-0 mr-4">
+        <img src="{% static 'images/dianalima.png' %}" alt="Foto de Diana Lima" class="rounded-full w-40 h-40">
+      </div>
+      <div>
+        <blockquote class="text-xl italic max-w-prose">
+          <p class="mb-4">"Perito Assistente aproximou meu trabalho, de outros grandes profissionais. Me surpreendeu!"</p>
+          <cite class="block text-gray-700">Diana Lima, Perita Criminal</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- Testemunho 3 -->
+    <div class="bg-white rounded-lg shadow-md p-8 flex items-center justify-center mb-8">
+      <div class="flex-shrink-0 mr-4">
+        <img src="{% static 'images/carlosalberto.png' %}" alt="Foto de Carlos Alberto" class="rounded-full w-40 h-40">
+      </div>
+      <div>
+        <blockquote class="text-xl italic max-w-prose">
+          <p class="mb-4">"Perito Assistente é fantástico!!!"</p>
+          <cite class="block text-gray-700">Carlos Alberto, Advogado</cite>
+        </blockquote>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+
+
+<!-- Call-to-Action Section -->
+<section class="cta py-16 bg-green-500 text-white" style="background-image: url('{% static "images/bg-landingpage.jpg" %}');">
+  <div class="container mx-auto text-center">
+    <h2 class="text-6xl font-bold mb-8">Comece hoje!</h2>
+    {% if not request.user.is_authenticated %}
+    <button class="bg-green-500 text-green-600 font-bold py-3 px-6 rounded hover:bg-green-500 mb-8" hx-get="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}" hx-trigger="click">Inscrever-se</button>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="py-4 bg-gray-800 text-white text-center mb-8">
+  <p>&copy; 2024 Matrix Sistems. All rights reserved.</p>
+</footer>
+
+{% endblock %}

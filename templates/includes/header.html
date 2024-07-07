@@ -20,8 +20,12 @@
     x-transition:enter-end="opacity-100 translate-y-0">
         <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
             {% if user.is_authenticated %}
-            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'home' %}">Bios</a></li>
+            <li><a href="{% url 'create_subscription' %}">Assinar</a></li>
             <li><a href="{% url 'post-create' %}">Criar Bio</a></li>
+            {% if request.user.is_superuser %}
+            <li><a href="{% url 'subscription-list' %}">Lista Usuarios</a></li>
+            {% endif %}
             <li class="relative">
                 <div class="absolute top-2 right-0"
                 hx-get="{% url 'notify-inbox' %}"
@@ -47,6 +51,7 @@
                 </div>
             </li>
             {% else %}
+            <li><a href="{% url 'create_subscription' %}">Assinar</a></li>
             <li><a href="{% url 'account_login' %}">Entrar</a></li>
             <li><a href="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}">Inscrever-se</a></li>
             {% endif %}

@@ -1,0 +1,52 @@
+<!-- subscriptions/templates/subscription_list.html -->
+{% extends 'layouts/c.html' %}
+{% block title %}Assinaturas{% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-10">
+    <h1 class="text-3xl font-bold mb-8 text-center">Assinaturas</h1>
+    
+    {% if subscriptions %}
+    <div class="overflow-x-auto">
+        <table class="min-w-full rounded-lg overflow-hidden shadow-lg">
+            <thead class="bg-blue-900 text-white">
+                <tr>
+                    <th class="px-6 py-3 text-left">Plano</th>
+                    <th class="px-6 py-3 text-left">Usuário</th>
+                    <th class="px-6 py-3 text-left">Preço</th>
+                    <th class="px-6 py-3 text-left">Início</th>
+                    <th class="px-6 py-3 text-left">Fim</th>
+                    <th class="px-6 py-3 text-left">Ativa</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-blue-800">
+                {% for item in subscriptions %}
+                <tr>
+                    <td class="px-6 py-4">{{ item.subscription.plan.name }}</td>
+                    <td class="px-6 py-4 {% if item.subscription.active %} text-white{% endif %}">{{ item.username }}</td>
+                    <td class="px-6 py-4">R$ {{ item.subscription.amount }}</td>
+                    <td class="px-6 py-4">{{ item.subscription.start_date }}</td>
+                    <td class="px-6 py-4">{{ item.subscription.end_date }}</td>
+                    <td class="px-6 py-4 {% if item.subscription.active %} text-white{% endif %}">{{ item.subscription.active }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="px-6 py-4 text-center text-gray-700">Não há assinaturas para exibir.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot class="bg-blue-900 text-white">
+                <tr>
+                    <th colspan="2" class="px-6 py-3 text-left">Total</th>
+                    <td class="px-6 py-3 text-left">R$ {{ total_amount|floatformat:"2" }}</td>
+                    <td colspan="3"></td>  <!-- Colspan para preencher o restante das colunas -->
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-center text-gray-700 mt-4">Não há assinaturas para exibir.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
